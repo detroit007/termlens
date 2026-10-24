@@ -1,0 +1,255 @@
+@import "tailwindcss";
+
+:root {
+  --font-heading: var(--font-bricolage), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-body: var(--font-plus-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Color Palette */
+  --bg-lavender: #F4EFFC;
+  --bg-lavender-subtle: #FAF7FE;
+  --bg-card: #FFFFFF;
+  --bg-card-alt: #F8F5FD;
+  
+  --violet-primary: #6B42FD;
+  --violet-hover: #582EE6;
+  --violet-active: #4823C8;
+  --violet-light: #EEE9FE;
+  --violet-border: #D8CCFD;
+
+  --peach-primary: #FF7E62;
+  --peach-light: #FFF0EB;
+  --peach-border: #FFD4C8;
+  --peach-dark: #C94C31;
+
+  --mint-primary: #059669;
+  --mint-light: #E7FAF2;
+  --mint-border: #A7F3D0;
+  --mint-dark: #047857;
+
+  --sunflower-primary: #D97706;
+  --sunflower-light: #FEF8E6;
+  --sunflower-border: #FDE68A;
+  --sunflower-dark: #B45309;
+
+  --text-primary: #1C1335;
+  --text-secondary: #4D4467;
+  --text-muted: #7A7094;
+  --border-light: rgba(107, 66, 253, 0.12);
+
+  /* Claymorphism Shadows */
+  --clay-shadow-card: 
+    0 16px 36px -12px rgba(107, 66, 253, 0.14),
+    0 4px 14px -2px rgba(28, 19, 53, 0.05),
+    inset 0 2px 4px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -3px 6px 0 rgba(107, 66, 253, 0.06);
+
+  --clay-shadow-float: 
+    0 24px 48px -14px rgba(107, 66, 253, 0.18),
+    0 8px 20px -4px rgba(28, 19, 53, 0.08),
+    inset 0 3px 6px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -4px 8px 0 rgba(107, 66, 253, 0.08);
+
+  --clay-shadow-btn: 
+    0 8px 18px -4px rgba(107, 66, 253, 0.32),
+    0 2px 6px -1px rgba(28, 19, 53, 0.12),
+    inset 0 2px 3px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.15);
+
+  --clay-shadow-btn-peach: 
+    0 8px 18px -4px rgba(255, 126, 98, 0.35),
+    0 2px 6px -1px rgba(28, 19, 53, 0.1),
+    inset 0 2px 3px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.12);
+
+  --clay-shadow-btn-mint: 
+    0 8px 18px -4px rgba(5, 150, 105, 0.3),
+    0 2px 6px -1px rgba(28, 19, 53, 0.1),
+    inset 0 2px 3px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -2px 4px 0 rgba(0, 0, 0, 0.12);
+
+  --clay-shadow-btn-soft: 
+    0 6px 14px -3px rgba(107, 66, 253, 0.12),
+    0 2px 4px -1px rgba(28, 19, 53, 0.04),
+    inset 0 2px 3px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -2px 4px 0 rgba(107, 66, 253, 0.08);
+
+  --clay-shadow-inset: 
+    inset 0 3px 6px 0 rgba(28, 19, 53, 0.08),
+    inset 0 -2px 4px 0 rgba(255, 255, 255, 0.8),
+    0 2px 4px 0 rgba(107, 66, 253, 0.04);
+}
+
+body {
+  background-color: var(--bg-lavender);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  letter-spacing: -0.01em;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: -0.025em;
+}
+
+/* Clay Card Classes */
+.clay-card {
+  background: var(--bg-card);
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: var(--clay-shadow-card);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clay-card-interactive {
+  cursor: pointer;
+}
+
+.clay-card-interactive:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--clay-shadow-float);
+}
+
+.clay-card-interactive:active {
+  transform: translateY(1px);
+}
+
+.clay-card-sunken {
+  background: var(--bg-lavender-subtle);
+  border-radius: 24px;
+  border: 1px solid rgba(107, 66, 253, 0.08);
+  box-shadow: var(--clay-shadow-inset);
+}
+
+/* Clay Button Styles */
+.clay-btn {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  border-radius: 9999px;
+  padding: 0.7rem 1.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  user-select: none;
+}
+
+.clay-btn:active {
+  transform: translateY(2px) scale(0.98);
+}
+
+.clay-btn-primary {
+  background: linear-gradient(135deg, #7A53FE 0%, #6034EE 100%);
+  color: #FFFFFF;
+  box-shadow: var(--clay-shadow-btn);
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.clay-btn-primary:hover {
+  background: linear-gradient(135deg, #8762FE 0%, #5629E6 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px -4px rgba(107, 66, 253, 0.42);
+}
+
+.clay-btn-secondary {
+  background: #FFFFFF;
+  color: var(--violet-primary);
+  border: 1.5px solid var(--violet-border);
+  box-shadow: var(--clay-shadow-btn-soft);
+}
+
+.clay-btn-secondary:hover {
+  background: var(--violet-light);
+  transform: translateY(-2px);
+}
+
+.clay-btn-peach {
+  background: linear-gradient(135deg, #FF8E74 0%, #F56B4E 100%);
+  color: #FFFFFF;
+  box-shadow: var(--clay-shadow-btn-peach);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.clay-btn-mint {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #FFFFFF;
+  box-shadow: var(--clay-shadow-btn-mint);
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Clay Badge / Pill */
+.clay-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font-heading);
+  box-shadow: 
+    0 3px 8px -1px rgba(28, 19, 53, 0.05),
+    inset 0 1px 2px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.clay-pill-violet {
+  background: var(--violet-light);
+  color: var(--violet-primary);
+  border-color: var(--violet-border);
+}
+
+.clay-pill-peach {
+  background: var(--peach-light);
+  color: var(--peach-dark);
+  border-color: var(--peach-border);
+}
+
+.clay-pill-mint {
+  background: var(--mint-light);
+  color: var(--mint-dark);
+  border-color: var(--mint-border);
+}
+
+.clay-pill-sunflower {
+  background: var(--sunflower-light);
+  color: var(--sunflower-dark);
+  border-color: var(--sunflower-border);
+}
+
+/* Streaming Blinking Cursor */
+.streaming-cursor {
+  display: inline-block;
+  width: 9px;
+  height: 18px;
+  background-color: var(--violet-primary);
+  border-radius: 3px;
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  animation: pulse-cursor 0.75s infinite ease-in-out;
+}
+
+@keyframes pulse-cursor {
+  0%, 100% { opacity: 1; transform: scaleY(1); }
+  50% { opacity: 0.15; transform: scaleY(0.85); }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(107, 66, 253, 0.04);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(107, 66, 253, 0.2);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 66, 253, 0.35);
+}
