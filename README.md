@@ -1,146 +1,132 @@
-# 🔍 TermLens
+# 🎓 TermLens (School Edition)
 
-> **Intelligent AI Term Explainer Agent**  
-> *Zooming in on complex AI concepts through multi-layered mental models, real-world examples, and interactive recall.*
-
----
-
-## 💡 Project Overview
-
-**TermLens** is an agentic AI educational system designed to deconstruct complex machine learning and artificial intelligence jargon into intuitive, retainable understanding. Rather than returning dense academic papers or superficial one-liners, TermLens transforms any AI term into a structured **4-Layer Cognitive Breakdown**:
-
-1. 🎯 **Simple (ELI5)**: A concise, single-line explanation capturing the core essence without jargon.
-2. 🧠 **Mental Model**: A vivid real-world analogy or cognitive anchor that makes the abstraction stick.
-3. 💡 **Practical Examples**: Concrete, real-world applications showing how the concept works in production.
-4. ❓ **Interactive Quiz**: A bite-sized concept check with multiple choices or thought prompts to test comprehension.
+> **AI Term Explainer for School Students**  
+> *Deconstructing machine learning concepts into intuitive, sticky mental models, 3-step walk-throughs, and AI-graded recall.*
 
 ---
 
-## 🧩 The 4-Layer Concept Format
+## 🌟 What is TermLens?
 
-Here is how TermLens structures every explanation:
+**TermLens** is an intelligent AI concept tutor designed specifically for school students. Traditional AI glossaries are either too academic or overly superficial. TermLens breaks down any AI term into a beginner-friendly **4-Layer Cognitive Breakdown**:
 
-### Example: `RAG (Retrieval-Augmented Generation)`
-
-| Layer | Content |
-| :--- | :--- |
-| **Simple** | An AI technique that lets language models search external documents for up-to-date facts before generating an answer. |
-| **Mental Model** | Like taking an open-book exam: instead of relying only on memory (weights), the student looks up specific reference books (retrieval) to answer accurately. |
-| **Examples** | A customer support bot searching internal company Notion pages before answering a user's question, preventing outdated or hallucinated info. |
-| **Quiz** | *Why would a company use RAG instead of re-training their model every week?*<br>• A) It costs less and provides real-time data access.<br>• B) It makes the model memorize passwords.<br>• C) It eliminates the need for any language model.<br>*(Answer: A)* |
+1. 🎯 **Simple (ELI5)**: Exactly one clear sentence a middle- or high-school student understands without jargon.
+2. 🧠 **Mental Model + 3 Steps**: An everyday comparison (school, library, kitchen, sports, smartphone) paired with **exactly 3 sequential steps** explaining how it works.
+3. 💡 **Relatable Real-World Example**: A concrete scenario students can relate to (homework bots, video games, classroom tools).
+4. ❓ **Active Recall Quiz (0–3 AI Grading)**: An interactive question graded on a **0–3 rubric** with encouraging, constructive pedagogical feedback.
 
 ---
 
-## 🏗️ Architecture & Data Pipeline
-
-TermLens combines deterministic grounding with adaptive agentic reasoning:
+## 🏗️ Architecture & Technology Stack
 
 ```
-                      ┌──────────────────────────────────────┐
-                      │              User Query              │
-                      └──────────────────┬───────────────────┘
-                                         ▼
-                      ┌──────────────────────────────────────┐
-                      │         Input Guardrails             │
-                      │  (Scope check & Safety validation)   │
-                      └──────────────────┬───────────────────┘
-                                         ▼
-                                ┌─────────────────┐
-                       Yes ┌────┤ In AI Glossary? ├────┐ No
-                           │    └─────────────────┘    │
-                           ▼                           ▼
-                 ┌───────────────────┐       ┌───────────────────┐
-                 │ Local Knowledge   │       │ Web Search Tool   │
-                 │ (Stanford HAI DB) │       │ (Live Retrieval)  │
-                 └─────────┬─────────┘       └─────────┬─────────┘
-                           │                           │
-                           └─────────────┬─────────────┘
-                                         ▼
-                      ┌──────────────────────────────────────┐
-                      │           TermLens Agent             │
-                      │   (LangChain + Local / Cloud LLMs)   │
-                      │   - Simple Breakdown                 │
-                      │   - Mental Model Synthesis           │
-                      │   - Practical Real-world Example     │
-                      │   - Dynamic Concept Quiz             │
-                      └──────────────────┬───────────────────┘
-                                         ▼
-                      ┌──────────────────────────────────────┐
-                      │       HITL (Human-in-the-Loop)       │
-                      │    & Output Guardrails Validation    │
-                      └──────────────────┬───────────────────┘
-                                         ▼
-                      ┌──────────────────────────────────────┐
-                      │   Interactive Web UI / FastAPI Res   │
-                      └──────────────────────────────────────┘
+                          ┌───────────────────────────┐
+                          │   Student Web Interface   │
+                          │   (Next.js + Tailwind +   │
+                          │      Claymorphism UI)     │
+                          └─────────────┬─────────────┘
+                                        │ SSE / JSON
+                                        ▼
+                          ┌───────────────────────────┐
+                          │    FastAPI Server (uv)    │
+                          │   - School-Safe Filter    │
+                          │   - PII Redaction         │
+                          │   - Injection Guardrails  │
+                          │   - Rate Limiter          │
+                          └─────────────┬─────────────┘
+                                        │
+                    ┌───────────────────┴───────────────────┐
+                    ▼                                       ▼
+        ┌───────────────────────┐               ┌───────────────────────┐
+        │  Stanford HAI Glossary│               │   Safe Web Search     │
+        │   (data/glossary.json)│               │   (Teacher HITL Gate) │
+        └───────────┬───────────┘               └───────────┬───────────┘
+                    │                                       │
+                    └───────────────────┬───────────────────┘
+                                        ▼
+                          ┌───────────────────────────┐
+                          │   LangChain create_agent  │
+                          │   - 4-Layer Structured    │
+                          │   - 0-3 Quiz Grader       │
+                          │   - Local Ollama / Fake   │
+                          └─────────────┬─────────────┘
+                                        │
+                                        ▼
+                          ┌───────────────────────────┐
+                          │   SQLModel SQLite DB      │
+                          │   - XP & Levels           │
+                          │   - Streaks & Freezes     │
+                          │   - Daily Goals & Badges  │
+                          │   - History & Reviews     │
+                          └───────────────────────────┘
 ```
 
-### Core Data & System Capabilities
-* 📚 **Authoritative AI Glossary**: Grounded by curated datasets, including **98+ verified definitions from Stanford HAI** (`data/glossary.json`).
-* 🤖 **Agentic Reasoning (LLMs)**: Powered by local inference (e.g. Ollama with `qwen2.5-coder`) and cloud providers (Google Gemini) via LangChain.
-* 🌐 **Web Search Tooling**: Dynamically retrieves definitions and community consensus for newly emerging terms and cutting-edge papers.
-* 🛡️ **Guardrails & Quality Control**: Enforces output formatting, filters non-AI queries, and verifies analogy factual accuracy.
-* 👤 **Human-in-the-Loop (HITL)**: Feedback loops for rating mental model clarity, validating quiz questions, and curating new glossary additions.
+* **Backend (`api/`)**:
+  * [FastAPI](https://fastapi.tiangolo.com/) with SSE streaming (`sse-starlette`)
+  * [LangChain](https://docs.langchain.com/) `create_agent` with structured Pydantic output
+  * [SQLModel](https://sqlmodel.tiangolo.com/) + SQLite (`termlens.db`)
+  * Local Ollama (`qwen2.5-coder:14b`, `qwen2.5:1.5b`) & offline `GenericFakeChatModel` for tests
+  * Dev runner: `uv run fastapi dev app/main.py`
+* **Frontend (`web/`)**:
+  * [Next.js](https://nextjs.org/) (App Router) + [Tailwind CSS](https://tailwindcss.com/)
+  * Claymorphic aesthetic: soft lavender base (`#F4EFFC`), violet primary (`#6B42FD`), peach/mint/sunflower accents, pillowy cards, strictly zero emoji (bespoke inline SVGs)
+  * Dev runner: `npm run dev`
+* **Knowledge Base (`data/`)**:
+  * 98 curated AI definitions directly from [Stanford HAI (Human-Centered AI)](https://hai.stanford.edu/ai-definitions)
 
 ---
 
-## 🛠️ Technology Stack
+## 🛡️ Guardrails & Safety Architecture
 
-* **Backend / API**:
-  * [Python 3.12+](https://python.org)
-  * [FastAPI](https://fastapi.tiangolo.com/) & [Pydantic v2](https://docs.pydantic.dev/)
-  * [LangChain](https://www.langchain.com/) / `langchain-ollama` / `langchain-google-genai`
-  * Package Management: `uv`
-* **Frontend / Web**:
-  * [Next.js](https://nextjs.org/) (App Router)
-  * [TypeScript](https://www.typescriptlang.org/) & [React](https://react.dev/)
-* **Data**:
-  * Structured JSON datasets (`data/glossary.json` from Stanford University HAI)
+Designed from the ground up for school safety and academic integrity:
 
----
-
-## 📂 Repository Structure
-
-```text
-termlens/
-├── README.md                      # Project documentation & overview
-├── AGENTS.md                      # Workspace agent conventions & rules
-├── data/
-│   ├── glossary.json              # 98 Stanford HAI terms (array format)
-│   └── glossary_with_metadata.json# Glossary with metadata & source info
-├── api/                           # Backend API (FastAPI + LangChain)
-│   ├── app/
-│   │   ├── __init__.py
-│   │   └── main.py                # FastAPI entrypoint
-│   ├── code/
-│   │   └── agent-01.py            # LangChain agent prototype
-│   ├── data/
-│   │   └── glossary.json          # Mirrored glossary data for API
-│   ├── pyproject.toml             # uv / Python dependencies
-│   └── uv.lock
-└── web/                           # Frontend (Next.js + TypeScript)
-    ├── app/                       # Next.js App Router pages
-    ├── package.json
-    └── tsconfig.json
-```
+| Guardrail | Enforcement Method | Behavior |
+| :--- | :--- | :--- |
+| **School-Safe Filter** | Keyword regex & semantic checks | Blocks profanity, violence, adult topics, and illegal substances. |
+| **Anti-Prompt Injection** | Jailbreak pattern detection | Neutralizes attempts to override system prompts or bypass filters. |
+| **PII Redaction** | Automatic pattern masking | Redacts emails, phone numbers, SSNs, and credit cards before LLM processing. |
+| **Rate Limiter** | In-memory sliding window | Restricts excessive requests (25 req/min) to avoid abuse. |
+| **Execution Bounds** | Bounded iterations & query limits | Caps tool execution to max 3 iterations and term length to 150 chars. |
+| **Teacher HITL Approval** | Human-in-the-Loop review gate | Unlisted terms requiring web search are held until approved by a curator. |
 
 ---
 
-## 🚀 Getting Started
+## 🎮 Engagement & Gamification
 
-### 1. Backend Setup (`api/`)
+* **XP & Levels**: Earn XP for exploring terms (+15 XP), hitting daily goals (+25 XP), and mastering quizzes (+5 to +35 XP). Every 100 XP levels up!
+* **Daily Streaks**: Habit tracker rewarding daily practice.
+* **Streak Freezes**: Prevent streak resets when life happens! Students can purchase streak freezes using their earned credits.
+* **Daily Goal**: Set to 3 concepts/day with celebratory bonus rewards.
+* **Earned Badges**: Milestone badges (`First Spark`, `Concept Explorer`, `Three-Day Fire`, `Mastery Ace`, `Curator Ally`).
+* **Study History**: Preserves a full log of terms, analogies, and quiz attempts in SQLite.
+
+---
+
+## 🚀 Running the Project
+
+### 1. Run Backend (`api/`)
 
 ```bash
 cd api
 
-# Install dependencies using uv
+# Install dependencies via uv
 uv sync
 
-# Run the agent prototype or API server
-uv run python app/main.py
+# Run FastAPI in development mode
+uv run fastapi dev app/main.py --port 8000
 ```
 
-### 2. Frontend Setup (`web/`)
+FastAPI will start at `http://127.0.0.1:8000` with interactive Swagger docs at `http://127.0.0.1:8000/docs`.
+
+### 2. Run Test Suite (Offline with Fake Model)
+
+```bash
+cd api
+uv run pytest
+```
+
+*Runs 20 automated unit tests covering guardrails, PII redaction, prompt injection, agent structured output, 0–3 quiz grading, and all FastAPI endpoints!*
+
+### 3. Run Frontend (`web/`)
 
 ```bash
 cd web
@@ -152,15 +138,12 @@ npm install
 npm run dev
 ```
 
-Visit `http://localhost:3000` to interact with the TermLens interface.
+Visit `http://localhost:3000` to interact with the full claymorphic experience.
 
 ---
 
-## 🗺️ Roadmap
+## 📦 Deliverable Archive
 
-- [x] Initial Stanford HAI 98-term glossary extraction & normalization
-- [x] LangChain agent foundation with local Ollama model integration
-- [ ] Multi-turn mental model refinement loop
-- [ ] Real-time web search fallback for unlisted terms
-- [ ] Guardrails implementation for hallucination suppression
-- [ ] Human-in-the-Loop curation dashboard for rating analogies & quizzes
+* Full source package: **[termlens-school-edition.zip](file:///Users/hamza/Hami%20Projects/navttc/termlens/termlens-school-edition.zip)**
+* Core Agent Code: **[api/app/main.py](file:///Users/hamza/Hami%20Projects/navttc/termlens/api/app/main.py)**
+* Stanford HAI AI Glossary: **[data/glossary.json](file:///Users/hamza/Hami%20Projects/navttc/termlens/data/glossary.json)**

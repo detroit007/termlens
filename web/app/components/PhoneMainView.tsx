@@ -177,7 +177,7 @@ export default function PhoneMainView({
               </span>
               <IconLightbulb className="w-3.5 h-3.5 text-[#059669]" />
             </div>
-            <p className="text-xs text-[#1C1335] leading-relaxed font-medium">{selectedTerm.examples}</p>
+            <p className="text-xs text-[#1C1335] leading-relaxed font-medium">{selectedTerm.example}</p>
           </div>
 
           {/* Layer 4: Mobile Quiz */}

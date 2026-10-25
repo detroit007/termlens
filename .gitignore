@@ -48,5 +48,11 @@ yarn-error.log*
 # Vercel
 .vercel/
 
+# Database & Archives
+*.db
+*.sqlite
+*.sqlite3
+*.zip
+
 # TypeScript
 *.tsbuildinfo

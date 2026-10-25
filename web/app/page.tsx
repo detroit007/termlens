@@ -40,9 +40,14 @@ export default function Home() {
         simple: item.definition,
         mentalModel: {
           analogy: `Think of ${item.term} as a specialized cognitive mechanism designed to optimize AI precision and consistency.`,
-          anchor: `${item.term} functional model`
+          anchor: `${item.term} functional model`,
+          steps: [
+            "Step 1: Input the student prompt or question.",
+            "Step 2: Process using the AI's internal parameters and rules.",
+            "Step 3: Produce an accurate, helpful response."
+          ]
         },
-        examples: `Standard machine learning pipelines implement ${item.term} during production inference and model evaluation workflows.`,
+        example: `Standard machine learning pipelines implement ${item.term} during production inference and model evaluation workflows.`,
         quiz: {
           question: `What is the primary role of ${item.term} in artificial intelligence systems?`,
           options: [
@@ -52,12 +57,16 @@ export default function Home() {
             "To enforce audio output formatting exclusively"
           ],
           correctIndex: 0,
+          correctAnswerText: "A",
+          hint: "Focus on how it improves accuracy.",
           explanation: `Indeed: ${item.definition}`
         },
         source: item.source || "Stanford University HAI",
         sourceUrl: item.url || `https://hai.stanford.edu/ai-definitions/${item.slug}`,
+        fromGlossary: true,
+        webSearchUsed: false,
+        hitlApproved: false,
         confidence: 96,
-        approvedByHuman: true,
         reviewedDate: "Verified Oct 2026"
       };
     });
