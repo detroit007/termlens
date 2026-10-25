@@ -85,7 +85,7 @@ export default function DesktopMainView({
     setStreamMessage("Connecting to TermLens AI pipeline...");
 
     const eventSource = new EventSource(
-      `http://127.0.0.1:8000/api/explain/stream?term=${encodeURIComponent(selectedTerm.term)}&user_id=1`
+      `http://127.0.0.1:9000/api/explain/stream?term=${encodeURIComponent(selectedTerm.term)}&user_id=1`
     );
 
     eventSource.addEventListener("stage", (e: MessageEvent) => {
@@ -150,7 +150,7 @@ export default function DesktopMainView({
     const letter = String.fromCharCode(65 + index);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/quiz/grade", {
+      const res = await fetch("http://127.0.0.1:9000/api/quiz/grade", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -194,7 +194,7 @@ export default function DesktopMainView({
   // Buy or use Streak Freeze
   const handleBuyStreakFreeze = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/user/freeze?user_id=1", { method: "POST" });
+      const res = await fetch("http://127.0.0.1:9000/api/user/freeze?user_id=1", { method: "POST" });
       const data = await res.json();
       if (data.success) {
         onUpdateStats((prev) => ({
